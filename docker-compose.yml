@@ -1,0 +1,14 @@
+services:
+  tomcat:
+    build: .
+    ports:
+      - "8081:8080"
+
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - tomcat
